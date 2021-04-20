@@ -240,7 +240,7 @@ abstract class EloquentRepository {
     /**
      * delete belongs to relations
     */
-    public function deleteRelations(Model $model, array $relations)
+    public function deleteRelations(Model $model, array $relations) 
     {
         foreach($relations as $relation){
             if($model->$relation->count()>0){
