@@ -63,6 +63,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
 
-Route::get('/company-login', [AuthenticatedSessionController::class, 'createCompany']);
+Route::get('/company-login', [AuthenticatedSessionController::class, 'createCompany'])->name('company.login');
 
-#Route::post('/company-login', [AuthenticatedSessionController::class, 'storeCompany']);
+Route::post('/company-login', [AuthenticatedSessionController::class, 'storeCompany'])->name('company.auth');

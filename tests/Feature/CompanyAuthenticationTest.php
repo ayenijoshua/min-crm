@@ -10,23 +10,37 @@ use App\Providers\RouteServiceProvider;
 
 class AuthenticateCompany extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_login_screen_can_be_rendered()
     {
-        $response = $this->get('/company-login');
+        $response = $this->get(route('company.login'));
 
         $response->assertStatus(200);
     }
 
     public function test_company_can_authenticate_using_the_login_screen()
     {
-        $user = Company::factory()->create();
+        $company = Company::factory()->create();
 
-        $response = $this->post('/company-login', [
-            'email' => $user->email,
+        $response = $this->post(route('company.auth'), [
+            'email' => $company->email,
             'password' => 'password',
         ]);
 
-        $this->assertAuthenticated();
+        $this->assertAuthenticated('company');
         $response->assertRedirect(RouteServiceProvider::COMPANY_DASHBOARD);
+    }
+
+    public function test_companies_can_not_authenticate_with_invalid_password()
+    {
+        $company = Company::factory()->create();
+
+        $this->post(route('company.auth'), [
+            'email' => $company->email,
+            'password' => 'wrong-password',
+        ]);
+
+        $this->assertGuest();
     }
 }

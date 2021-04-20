@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -45,7 +45,7 @@ class CompanyLoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::gaurd('company')
+        if (! Auth::guard('company')
                 ->attempt($this->only('email', 'password'), $this->filled('remember'))) {
                     RateLimiter::hit($this->throttleKey());
 
