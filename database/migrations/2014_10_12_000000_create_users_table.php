@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_employee')->default(false);
             $table->boolean('is_admin')->default(false);
-            $table->foreignId('company_id')->references('id')->on('companies')->nullable();
+            $table->foreignId('company_id')->nullable()->references('id')->on('companies');
             $table->rememberToken();
             $table->timestamps();
         });
