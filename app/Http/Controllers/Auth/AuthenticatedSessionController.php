@@ -23,6 +23,14 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
+     * dispay compay login view
+     */
+    public function createCompany()
+    {
+        return view('auth.company-login');
+    }
+
+    /**
      * Handle an incoming authentication request.
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
