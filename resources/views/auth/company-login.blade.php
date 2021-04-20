@@ -1,1 +1,6 @@
-<h1>jjj</h1>
+@extends('layouts.auth')
+
+@section('content')
+    <!-- Main Content -->
+   <company-login-component/>
+@endsection
