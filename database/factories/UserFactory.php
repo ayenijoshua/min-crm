@@ -44,4 +44,24 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    /**
+     * Set admin user
+     */
+    public function admin()
+    {
+        return $this->state([
+            'is_admin'=>true
+        ]);
+    }
+
+    /**
+     * Set employee user
+     */
+    public function employee()
+    {
+        return $this->state([
+            'is_employee'=>true
+        ]);
+    }
 }
