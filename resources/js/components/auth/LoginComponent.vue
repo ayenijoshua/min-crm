@@ -8,23 +8,20 @@
             <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
                 <div class="container-fluid">
                     <div class="row">
-                        <h2>{{panelTitile}}</h2>
+                        <h2>{{panelTitle}}</h2>
                     </div>
                     <div class="row">
-                        <form control="" class="form-group">
+                        <form method="post" :action="postAction" class="form-group" @submit.prevent>
                             <div class="row">
-                                <input type="text" name="username" id="username" class="form__input" placeholder="Username">
+                                <input type="text" v-model="loginForm.email" id="username" class="form__input" placeholder="Eail">
                             </div>
                             <div class="row">
                                 <!-- <span class="fa fa-lock"></span> -->
-                                <input type="password" name="password" id="password" class="form__input" placeholder="Password">
+                                <input type="password" v-model="loginForm.password" id="password" class="form__input" placeholder="Password">
                             </div>
+                            
                             <div class="row">
-                                <input type="checkbox" name="remember_me" id="remember_me" class="">
-                                <label class="" for="remember_me">Remember Me!</label>
-                            </div>
-                            <div class="row">
-                                <input type="submit" value="Submit" class="btn">
+                                <input type="submit" value="Submit" class="btn" @click="submit()">
                             </div>
                         </form>
                     </div>
@@ -39,14 +36,14 @@
 
 <script>
 export default {
-    name:'CompanyLoginComponent',
+    name:'LoginComponent',
     props:{
-        panelTitile:{
+        panelTitle:{
             default:'login',
             type:String,
             required:true
         },
-        action:{
+        postAction:{
             type:String,
             required:true
         }
@@ -58,7 +55,29 @@ export default {
                 password:''
             }
         }
+    },
+
+    methods: {
+        submit(){
+            axios.post(this.postAction, this.loginForm)
+            .then(res => {
+                if (res.data.success) {
+                 location = res.data.redirect_url
+                } else {
+                    toastr.error(res.data.message);
+                }
+            })
+            .catch(err => {
+                if(err.response && err.response.status === 422){
+                    toastr.error(err.response.data.message)
+                }else{
+                    toastr.error("An error occured, please try again")
+                    console.log(err);
+                }
+            });
+        }
     }
+
 
 }
 </script>

@@ -13,6 +13,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>

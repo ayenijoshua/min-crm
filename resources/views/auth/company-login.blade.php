@@ -2,5 +2,5 @@
 
 @section('content')
     <!-- Main Content -->
-   <company-login-component/>
+<login-component panel-title='Company Login' post-action={{route('company.auth')}}/>
 @endsection
