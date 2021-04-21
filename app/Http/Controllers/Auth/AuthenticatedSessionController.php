@@ -42,7 +42,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $redirectUrl = $request->user()->is_admin 
+        ? RouteServiceProvider::ADMIN_DASHBOARD 
+        : RouteServiceProvider::USER_DASHBOARD;
+
+        return response(['redirect_url'=>$redirectUrl,'success'=>true],200);
     }
 
     /**
@@ -54,7 +58,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return response(['redirect_url'=>RouteServiceProvider::HOME,'success'=>true],200);
+        return response(['redirect_url'=>RouteServiceProvider::COMPANY_DASHBOARD,'success'=>true],200);
     }
 
     /**
