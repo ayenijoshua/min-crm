@@ -1977,10 +1977,10 @@ __webpack_require__.r(__webpack_exports__);
 //import Input from '../../../vendor/laravel/breeze/stubs/inertia/resources/js/Components/Input.vue';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   //components: { Input },
-  name: 'CreateUserComponent',
+  name: 'EditUserComponent',
   props: {
     panelTitle: {
-      "default": 'Create',
+      "default": 'Edit',
       type: String,
       required: true
     },
@@ -2037,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      axios.post(this.postAction, this.form).then(function (res) {
+      axios.patch(this.postAction, this.form).then(function (res) {
         if (res.data.success) {
           toastr.success(res.data.message);
         } else {
@@ -2135,6 +2135,24 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/admin/all-users?page=' + page).then(function (res) {
         _this.users = res.data.users;
       });
+    },
+    destroy: function destroy(id) {
+      var _this2 = this;
+
+      if (confirm("Do you want to delete this user?")) {
+        axios["delete"]('/admin/delete-user/' + id).then(function (res) {
+          if (res.data.success) {
+            _this2.getResults();
+
+            toastr.success(res.data.message);
+          } else {
+            toastr.error(res.data.message);
+          }
+        })["catch"](function (err) {
+          toastr.error("An error occured, please try again");
+          console.log(err);
+        });
+      }
     }
   }
 });
@@ -38789,6 +38807,40 @@ component.options.__file = "resources/js/components/CreateUserComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/DeleteUserComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/DeleteUserComponent.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__.default)(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/DeleteUserComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/EditUserComponent.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/EditUserComponent.vue ***!
@@ -39527,7 +39579,11 @@ var render = function() {
                         "a",
                         {
                           staticClass: "dropdown-item",
-                          attrs: { href: "delete-user/" + user.id }
+                          on: {
+                            click: function($event) {
+                              return _vm.destroy(user.id)
+                            }
+                          }
                         },
                         [_vm._v("Delete")]
                       )
@@ -51844,6 +51900,7 @@ Vue.compile = compileToFunctions;
 
 var map = {
 	"./components/CreateUserComponent.vue": "./resources/js/components/CreateUserComponent.vue",
+	"./components/DeleteUserComponent.vue": "./resources/js/components/DeleteUserComponent.vue",
 	"./components/EditUserComponent.vue": "./resources/js/components/EditUserComponent.vue",
 	"./components/UserComponent.vue": "./resources/js/components/UserComponent.vue",
 	"./components/UsersComponent.vue": "./resources/js/components/UsersComponent.vue",

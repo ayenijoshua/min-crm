@@ -61,9 +61,9 @@ export default {
                  toastr.error(res.data.message);
             }
         }).catch(err => {
-                toastr.error("An error occured, please try again")
-                console.log(err);
-            });
+            toastr.error("An error occured, please try again")
+            console.log(err);
+        });
     },
 
     methods: {

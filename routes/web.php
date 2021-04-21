@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin','middleware'=>['auth']], function () {
     Route::post('store-user',[UserController::class, 'store'])->name('admin.store-user');
     Route::get('edit-user/{id}',[UserController::class, 'edit'])->name('admin.edit-user');
     Route::post('update-user/{id}',[UserController::class, 'update'])->name('admin.update-user');
+    Route::delete('delete-user/{id}',[UserController::class, 'destroy'])->name('admin.delete-user');
 });
 
 Route::group(['prefix' => 'company','middleware'=>['']], function () {

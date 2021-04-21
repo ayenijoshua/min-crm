@@ -34,10 +34,10 @@
 //import Input from '../../../vendor/laravel/breeze/stubs/inertia/resources/js/Components/Input.vue';
 export default {
   //components: { Input },
-    name:'CreateUserComponent',
+    name:'EditUserComponent',
     props:{
         panelTitle:{
-            default:'Create',
+            default:'Edit',
             type:String,
             required:true
         },
@@ -104,7 +104,7 @@ export default {
 
     methods: {
         submit(){
-            axios.post(this.postAction, this.form)
+            axios.patch(this.postAction, this.form)
             .then(res => {
                 if (res.data.success) {
                     toastr.success(res.data.message);
