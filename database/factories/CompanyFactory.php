@@ -32,4 +32,10 @@ class CompanyFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+
+    public function testCompany(){
+        return $this->state([
+            'email'=>'test@company.com',
+        ]);
+    }
 }

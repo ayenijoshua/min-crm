@@ -66,12 +66,22 @@ class UserFactory extends Factory
     }
 
     /**
-     * Set employee user
+     * Set test employee
      */
     public function testEmployee()
     {
         return $this->state([
-            'email'=>'test@emaployee.com'
+            'email'=>'test@test.com'
+        ]);
+    }
+
+    /**
+     * test
+     */
+    public function testUser()
+    {
+        return $this->state([
+            'email'=>'test@test.com'
         ]);
     }
 }

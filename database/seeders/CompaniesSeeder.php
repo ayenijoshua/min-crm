@@ -16,10 +16,7 @@ class CompaniesSeeder extends Seeder
     public function run()
     {
         Company::factory()->count(20)
-        ->has(Employee::factory()->count(3))
-        ->state(function (array $attributes, Company $company) {
-            return ['company_id' => $company->id];
-        })
+        ->has(Employee::factory()->employee()->count(3), 'employees')
         ->create();
     }
 }

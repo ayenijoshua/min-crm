@@ -14,6 +14,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->state('admin')->create();
+        User::factory()->admin()->create();
     }
 }
