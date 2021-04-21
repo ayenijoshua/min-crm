@@ -30,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.create-user');
+        $companies = \App\Models\Company::all()->toJson();
+        return view('admin.create-user',['companies'=>$companies]);
 
     }
 
@@ -43,8 +44,7 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
         $this->user->create($request->all());
-        info('ki');
-        return response(['message'=>'User created successfully'],201);
+        return response(['message'=>'User created successfully','success'=>true],201);
     }
 
     /**

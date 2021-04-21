@@ -71,7 +71,7 @@ class UserFactory extends Factory
     public function testEmployee()
     {
         return $this->state([
-            'email'=>'test@test.com'
+            'email'=>'test@employee.com'
         ]);
     }
 

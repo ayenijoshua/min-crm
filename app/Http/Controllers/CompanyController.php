@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Repositories\Interfaces\RepositoryInterface;
 
 class CompanyController extends Controller
 {
+    function __construct(RepositoryInterface $company)
+    {
+        $this->company = $company;
+    }
+
+    function all()
+    {
+        $companies = $this->company->all();
+        return response(['companies'=>$companies,'success'=>true],200);
+    }
     /**
      * Display a listing of the resource.
      *
