@@ -20,4 +20,12 @@ class CompanyRepository extends EloquentRepository implements RepositoryInterfac
     public function getModel(){
         return $this->company;
     }
+
+    public function updateCompany($model,$request){
+        $this->update($model,$request->except('logo_path'));
+        if($request->hasFile('logo_path')){
+            $file = $this->storeLocalFile($request,'logo_path','company-logos');
+            $this->update($model,['logo_path'=>$file]);
+        }
+    }
 }

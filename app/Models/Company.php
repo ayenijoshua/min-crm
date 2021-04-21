@@ -10,6 +10,8 @@ class Company extends Authenticatable
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function employees(){
         return $this->hasMany(User::class);
     }

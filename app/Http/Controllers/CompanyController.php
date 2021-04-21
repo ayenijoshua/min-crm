@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\RepositoryInterface;
@@ -25,7 +26,7 @@ class CompanyController extends Controller
     }
 
     public function company($id){
-        return response(['company'=>$this->user->get($id)->load('employees'),'success'=>true],200);
+        return response(['company'=>$this->company->get($id)->load('employees'),'success'=>true],200);
     }
     /**
      * Display a listing of the resource.
@@ -75,9 +76,9 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        return view('admin.edit-company',['id'=>$id]);
     }
 
     /**
@@ -87,9 +88,11 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
-    {
-        //
+    public function update(UpdateCompanyRequest $request, Company $id)
+    { 
+        $company = $id;
+        $this->company->updateCompany($company,$request);
+        return response(['message'=>'Company updated successfully','success'=>true],201);
     }
 
     /**
@@ -98,8 +101,13 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Company $id)
     {
-        //
+        $company = $id;
+        $this->company->dissociateRelations($company,'company', ['employees']);
+        
+        $this->company->delete($company);
+
+        return response(['message'=>"Company delete successfully",'success'=>true]);
     }
 }

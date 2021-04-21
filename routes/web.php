@@ -28,9 +28,14 @@ Route::get('companies/{paginate?}',[CompanyController::class, 'all'])->name('com
 
 Route::group(['prefix' => 'admin','middleware'=>['auth']], function () {
     Route::get('dashboard',[UserController::class, 'index'])->name('admin.dashboard');
+
     Route::get('create-company',[CompanyController::class, 'create'])->name('admin.create-company');
     Route::post('store-company',[CompanyController::class, 'store'])->name('admin.store-company');
     Route::get('companies',[CompanyController::class, 'companies'])->name('admin.companies');
+    Route::get('edit-company/{id}',[CompanyController::class, 'edit'])->name('admin.edit-company');
+    Route::post('update-company/{id}',[CompanyController::class,'update'])->name('admin.update-company');
+    Route::get('company/{id}',[CompanyController::class, 'company'])->name('admin.company');
+    Route::delete('delete-company/{id}',[CompanyController::class, 'destroy'])->name('admin.delete-company');
 
     Route::get('create-user',[UserController::class, 'create'])->name('admin.create-user');
     Route::get('users',[UserController::class, 'users'])->name('admin.users');
