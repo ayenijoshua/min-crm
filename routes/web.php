@@ -21,9 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('users.logout');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 Route::get('companies/{paginate?}',[CompanyController::class, 'all'])->name('companies');
 
@@ -54,7 +52,12 @@ Route::group(['prefix' => 'company','middleware'=>['auth:company']], function ()
     Route::get('company-employees',[CompanyController::class, 'companyEmployees'])->name('company-employees');
     Route::get('{id}/employees',[CompanyController::class, 'employees'])->name('company.employees');
     Route::get('{id}/show',[CompanyController::class, 'show'])->name('company.show');
-    
+});
+
+Route::group(['prefix' => 'employee','middleware'=>['auth']], function () {
+    Route::get('dashboard',[UserController::class, 'userDashboard'])->name('employee.dashboard');
+    Route::get('user/{id}',[UserController::class, 'user'])->name('employee.user');
+    Route::post('update-employee/{id}',[UserController::class, 'update'])->name('employee.update');
 });
 
 require __DIR__.'/auth.php';

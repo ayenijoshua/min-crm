@@ -27,6 +27,17 @@ class UserController extends Controller
     }
 
     /**
+     * get employee dashboard
+     */
+    public function userDashboard(Request $request)
+    {
+        $id = $request->user()->id;//->with('company');
+        $user = $this->user->get($id)->load('company');
+        //dd($user);
+        return view ('employee.dashboard',['user'=>$user]);
+    }
+
+    /**
      * get users page
      */
     public function users(){

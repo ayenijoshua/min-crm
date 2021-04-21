@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Company;
 use App\Models\User as Employee;
 
-class CompanySeeder extends Seeder
+class EmployeeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        Company::factory()->testCompany()
-        ->has(Employee::factory()->count(5)->employee(), 'employees')
-        ->create();
+         Employee::factory(['email'=>'test@employee1'])->employee()
+            ->for(Company::factory())
+            ->create();
     }
 }
