@@ -33,7 +33,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Companies</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                      <a class="dropdown-item" href="{{route('companies')}}">All companies</a>
+                      <a class="dropdown-item" href="{{route('admin.companies')}}">All companies</a>
                       <a class="dropdown-item" href="{{route('admin.create-company')}}">Create Company</a>
                     </div>
                 </li>

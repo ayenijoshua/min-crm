@@ -13,10 +13,19 @@ class CompanyController extends Controller
         $this->company = $company;
     }
 
-    function all()
+    function all($paginate=null)
     {
-        $companies = $this->company->all();
+        $companies = $paginate ? $this->company->with('employees')->paginate() : $this->company->all();
         return response(['companies'=>$companies,'success'=>true],200);
+    }
+
+    public function companies()
+    {
+        return view('admin.companies');
+    }
+
+    public function company($id){
+        return response(['company'=>$this->user->get($id)->load('employees'),'success'=>true],200);
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +34,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        return view('company.dashboard');
     }
 
     /**
@@ -35,7 +44,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-company');
     }
 
     /**

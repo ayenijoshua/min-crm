@@ -24,12 +24,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('companies',[CompanyController::class, 'all'])->name('companies');
+Route::get('companies/{paginate?}',[CompanyController::class, 'all'])->name('companies');
 
 Route::group(['prefix' => 'admin','middleware'=>['auth']], function () {
     Route::get('dashboard',[UserController::class, 'index'])->name('admin.dashboard');
     Route::get('create-company',[CompanyController::class, 'create'])->name('admin.create-company');
     Route::post('store-company',[CompanyController::class, 'store'])->name('admin.store-company');
+    Route::get('companies',[CompanyController::class, 'companies'])->name('admin.companies');
 
     Route::get('create-user',[UserController::class, 'create'])->name('admin.create-user');
     Route::get('users',[UserController::class, 'users'])->name('admin.users');
