@@ -18,7 +18,7 @@ class CompanyCrudTest extends TestCase
         $user = User::factory()->create();
 
        $response = $this->actingAs($user)->post('/admin/create-company',$company);
-       $response->assertStatus(401);
+       $response->assertStatus(403);
 
     }
 }

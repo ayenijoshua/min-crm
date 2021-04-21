@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
+use App\Repositories\Interfaces\RepositoryInterface;
+use App\Models\User;
 
 class UserController extends Controller
 {
+    function __construct(RepositoryInterface $user)
+    {
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view ('admin.dashboard');
     }
 
     /**
@@ -23,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-user');
+
     }
 
     /**
@@ -32,9 +40,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $this->user->create($request->all());
+        info('ki');
+        return response(['message'=>'User created successfully'],201);
     }
 
     /**

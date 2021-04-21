@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(UserController::class)
           ->needs(RepositoryInterface::class)
           ->give(function () {
-              return UserRepository::class;
+              return (new UserRepository(new \App\Models\User));
           });
     }
 
