@@ -29,7 +29,7 @@ class AuthenticateCompany extends TestCase
         ]);
 
         $this->assertAuthenticated('company');
-        $response->assertRedirect(RouteServiceProvider::COMPANY_DASHBOARD);
+        $response->assertStatus(302);
     }
 
     public function test_companies_can_not_authenticate_with_invalid_password()
