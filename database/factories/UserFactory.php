@@ -64,4 +64,14 @@ class UserFactory extends Factory
             'is_employee'=>true
         ]);
     }
+
+    /**
+     * Set employee user
+     */
+    public function testEmployee()
+    {
+        return $this->state([
+            'email'=>'test@emaployee.com'
+        ]);
+    }
 }

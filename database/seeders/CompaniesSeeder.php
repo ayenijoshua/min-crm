@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Company;
+use App\Models\User as Employee;
 
 class CompaniesSeeder extends Seeder
 {
@@ -13,6 +15,11 @@ class CompaniesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Company::factory()->count(20)
+        ->has(Employee::factory()->count(3))
+        ->state(function (array $attributes, Company $company) {
+            return ['company_id' => $company->id];
+        })
+        ->create();
     }
 }
