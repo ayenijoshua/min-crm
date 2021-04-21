@@ -1,12 +1,13 @@
 <template>
     <div class="">
         <div class="table-responsive">
-            <table class="table table-hovered ">
+            <table class="table table-hovered table-bordered ">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Company</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -14,6 +15,15 @@
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.company.name}}</td>
+                            <td>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                        <a class="dropdown-item" :href="'edit-user/'+user.id">Edit</a>
+                                        <a class="dropdown-item" :href="'delete-user/'+user.id">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
             </table>

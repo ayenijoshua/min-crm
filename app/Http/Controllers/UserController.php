@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\RepositoryInterface;
 use App\Models\User;
@@ -31,7 +32,18 @@ class UserController extends Controller
     }
 
     /**
-     * load user resource
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function user($id)
+    {
+        return response(['user'=>$this->user->get($id)->load('company'),'success'=>true],200);
+    }
+
+    /**
+     * load users resource
      */
     public function all(){
         $users = $this->user->with('company')->paginate(20);
@@ -70,7 +82,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return response(['user'=>$this->user->get($id),'success'=>true],200);
     }
 
     /**
@@ -81,7 +93,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.edit-user',['id'=>$id]);
     }
 
     /**
@@ -91,9 +103,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $id)
     {
-        //
+        if($this->user->valueExists('email',$request->email,$id->id)){
+           return response(['message'=>'Email Already exist','success'=>false],422);
+        }
+        $this->user->update($id,$request->all());
+        return response(['message'=>'User updated successfully','success'=>true],201);
+
     }
 
     /**
@@ -102,8 +119,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $id)
     {
-        //
+        $this->user->delete($id);
+
+        return response(['message'=>"User delete successfully",'success'=>true]);
     }
 }
