@@ -28,4 +28,12 @@ class CompanyRepository extends EloquentRepository implements RepositoryInterfac
             $this->update($model,['logo_path'=>$file]);
         }
     }
+
+    public function createCompany($request){
+        $company = $this->create($request->except('logo_path'));
+        if($request->hasFile('logo_path')){
+            $file = $this->storeLocalFile($request,'logo_path','company-logos');
+            $this->update($company,['logo_path'=>$file]);
+        }
+    }
 }

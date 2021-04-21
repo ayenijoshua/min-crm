@@ -21,7 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view ('admin.dashboard');
+        $users = $this->user->count();
+        $companies = \App\Models\Company::count();
+        return view ('admin.dashboard',['users'=>$users,'companies'=>$companies]);
     }
 
     /**

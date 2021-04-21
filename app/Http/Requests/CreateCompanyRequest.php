@@ -25,7 +25,7 @@ class CreateCompanyRequest extends FormRequest
     {
         return [
             'name'=>'required|string',
-            'email' => 'required|string|email',
+            'email' => 'required|unique:companies|string|email',
             'password' => 'required|string',
             'url' => 'required|string',
             'logo_path' => 'nullable|file'

@@ -28,7 +28,7 @@
             <ul class="navbar-nav mr-auto">
                 
                 <li class="nav-item active">
-                <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{route('admin.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Companies</a>
@@ -49,9 +49,9 @@
             
             </div>
         </nav>
-    
+        <hr>
         <main role="main" class="container" id="app">
-            <div class="container-fluid pt-50" style="padding: 100px">
+            <div class="container-fluid pt-100">
                 <div class="row">
                 @yield('content')
                 </div>
