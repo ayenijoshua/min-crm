@@ -26,7 +26,7 @@
                         </form>
                     </div>
                     <div class="row">
-                        <p>Don't have an account? <a href="#">Register Here</a></p>
+                        <p>{{baseLinkName}} <a :href="baseLink">Login </a></p>
                     </div>
                 </div>
             </div>
@@ -46,6 +46,12 @@ export default {
         postAction:{
             type:String,
             required:true
+        },
+        baseLink:{
+            type:String
+        },
+        baseLinkName:{
+            type:String
         }
     },
     data(){

@@ -10,22 +10,27 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                    <tbody>
-                        <tr v-for="user in users.data" :key="user.id">
-                            <td>{{user.name}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.company.name}}</td>
-                            <td>
-                                <div class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                        <a class="dropdown-item" :href="'edit-user/'+user.id">Edit</a>
-                                        <a class="dropdown-item" @click="destroy(user.id)">Delete</a>
-                                    </div>
+                <tr v-if="users.data && users.data.length==0">
+                    <td colspan="3">
+                        <div class="bg-warning text-center">There no employees</div>
+                    </td>
+                </tr>
+                <tbody>
+                    <tr v-for="user in users.data" :key="user.id">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.company.name}}</td>
+                        <td>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" :href="'edit-user/'+user.id">Edit</a>
+                                    <a class="dropdown-item" @click="destroy(user.id)">Delete</a>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 

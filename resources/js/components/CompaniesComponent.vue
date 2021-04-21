@@ -11,25 +11,30 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                    <tbody>
-                        <tr v-for="company in companies.data" :key="company.id">
-                            <td>{{company.name}}</td>
-                            <td>{{company.email}}</td>
-                            <td>
-                                <img :src="company.logo_path" height="100" width="100">
-                            </td>
-                            <td>{{company.url}}</td>
-                            <td>
-                                <div class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                        <a class="dropdown-item" :href="'edit-company/'+company.id">Edit</a>
-                                        <a class="dropdown-item" @click="destroy(company.id)">Delete</a>
-                                    </div>
+                <tr v-if="companies.data && companies.data.length==0">
+                    <td colspan="3">
+                        <div class="bg-warning text-center">There no companies</div>
+                    </td>
+                </tr>
+                <tbody>
+                    <tr v-for="company in companies.data" :key="company.id">
+                        <td>{{company.name}}</td>
+                        <td>{{company.email}}</td>
+                        <td>
+                            <img :src="company.logo_path" height="100" width="100">
+                        </td>
+                        <td>{{company.url}}</td>
+                        <td>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" :href="'edit-company/'+company.id">Edit</a>
+                                    <a class="dropdown-item" @click="destroy(company.id)">Delete</a>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 

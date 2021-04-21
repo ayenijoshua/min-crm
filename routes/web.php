@@ -49,7 +49,7 @@ Route::group(['prefix' => 'admin','middleware'=>['auth']], function () {
     Route::delete('delete-user/{id}',[UserController::class, 'destroy'])->name('admin.delete-user');
 });
 
-Route::group(['prefix' => 'company'], function () {
+Route::group(['prefix' => 'company','middleware'=>['auth:company']], function () {
     Route::get('dashboard',[CompanyController::class, 'index'])->name('company.dashboard');
     Route::get('company-employees',[CompanyController::class, 'companyEmployees'])->name('company-employees');
     Route::get('{id}/employees',[CompanyController::class, 'employees'])->name('company.employees');

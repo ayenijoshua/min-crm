@@ -1890,6 +1890,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'companiesComponent',
@@ -2555,6 +2560,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'UsersComponent',
@@ -2662,6 +2672,12 @@ __webpack_require__.r(__webpack_exports__);
     postAction: {
       type: String,
       required: true
+    },
+    baseLink: {
+      type: String
+    },
+    baseLinkName: {
+      type: String
     }
   },
   data: function data() {
@@ -39810,6 +39826,10 @@ var render = function() {
       _c("table", { staticClass: "table table-hovered table-bordered " }, [
         _vm._m(0),
         _vm._v(" "),
+        _vm.companies.data && _vm.companies.data.length == 0
+          ? _c("tr", [_vm._m(1)])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "tbody",
           _vm._l(_vm.companies.data, function(company) {
@@ -39913,6 +39933,16 @@ var staticRenderFns = [
         _c("th", [_vm._v("url")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { colspan: "3" } }, [
+      _c("div", { staticClass: "bg-warning text-center" }, [
+        _vm._v("There no companies")
       ])
     ])
   }
@@ -40696,6 +40726,10 @@ var render = function() {
       _c("table", { staticClass: "table table-hovered table-bordered " }, [
         _vm._m(0),
         _vm._v(" "),
+        _vm.users.data && _vm.users.data.length == 0
+          ? _c("tr", [_vm._m(1)])
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "tbody",
           _vm._l(_vm.users.data, function(user) {
@@ -40791,6 +40825,16 @@ var staticRenderFns = [
         _c("th", [_vm._v("Company")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { colspan: "3" } }, [
+      _c("div", { staticClass: "bg-warning text-center" }, [
+        _vm._v("There no employees")
       ])
     ])
   }
@@ -40911,7 +40955,12 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "row" }, [
+            _c("p", [
+              _vm._v(_vm._s(_vm.baseLinkName) + " "),
+              _c("a", { attrs: { href: _vm.baseLink } }, [_vm._v("Login ")])
+            ])
+          ])
         ])
       ])
     ])
@@ -40929,17 +40978,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("h4", { staticClass: "company_title" }, [
         _c("a", { attrs: { href: "/" } }, [_vm._v("Mini-CRM")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("p", [
-        _vm._v("Don't have an account? "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Register Here")])
       ])
     ])
   }
