@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('users.logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -48,8 +49,11 @@ Route::group(['prefix' => 'admin','middleware'=>['auth']], function () {
     Route::delete('delete-user/{id}',[UserController::class, 'destroy'])->name('admin.delete-user');
 });
 
-Route::group(['prefix' => 'company','middleware'=>['']], function () {
-    
+Route::group(['prefix' => 'company'], function () {
+    Route::get('dashboard',[CompanyController::class, 'index'])->name('company.dashboard');
+    Route::get('company-employees',[CompanyController::class, 'companyEmployees'])->name('company-employees');
+    Route::get('{id}/employees',[CompanyController::class, 'employees'])->name('company.employees');
+    Route::get('{id}/show',[CompanyController::class, 'show'])->name('company.show');
     
 });
 

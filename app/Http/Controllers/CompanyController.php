@@ -34,9 +34,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('company.dashboard');
+        $employees = $request->user('company')->employees->count();
+        return view('company.dashboard',['employees'=>$employees]);
     }
 
     /**
@@ -61,15 +62,28 @@ class CompanyController extends Controller
         return response(['message'=>"Company created successfully",'success'=>true]);
     }
 
+    public function companyEmployees(Request $request){
+        return view('company.employees',['id'=>$request->user('company')->id]);
+    }
+
+    public function employees(Company $id){
+        $company = $id;
+        $employees = $company->employees()->paginate(5);
+        return response(['employees'=>$employees,'success'=>true],200);
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Company $id)
     {
-        //
+        info($id);
+        $company = $id;
+
+        return response(['company'=>$company,'success'=>true],200);
     }
 
     /**

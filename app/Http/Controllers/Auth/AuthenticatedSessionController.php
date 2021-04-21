@@ -46,7 +46,7 @@ class AuthenticatedSessionController extends Controller
         ? RouteServiceProvider::ADMIN_DASHBOARD 
         : RouteServiceProvider::USER_DASHBOARD;
 
-        return response(['redirect_url'=>$redirectUrl,'success'=>true],302);
+        return response(['redirect_url'=>$redirectUrl,'success'=>true],200);
     }
 
     /**
@@ -58,7 +58,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return response(['redirect_url'=>RouteServiceProvider::COMPANY_DASHBOARD,'success'=>true],302);
+        return response(['redirect_url'=>RouteServiceProvider::COMPANY_DASHBOARD,'success'=>true],200);
     }
 
     /**
