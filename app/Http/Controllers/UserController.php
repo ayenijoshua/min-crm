@@ -24,6 +24,21 @@ class UserController extends Controller
     }
 
     /**
+     * get users page
+     */
+    public function users(){
+        return view('admin.users');
+    }
+
+    /**
+     * load user resource
+     */
+    public function all(){
+        $users = $this->user->with('company')->paginate(20);
+        return response(['users'=>$users,'success'=>true],200);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

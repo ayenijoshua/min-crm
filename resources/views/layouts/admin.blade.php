@@ -33,15 +33,15 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Companies</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                      <a class="dropdown-item" href="#">All companies</a>
-                      <a class="dropdown-item" href="#">Create Company</a>
+                      <a class="dropdown-item" href="{{route('companies')}}">All companies</a>
+                      <a class="dropdown-item" href="{{route('admin.create-company')}}">Create Company</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Users</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                      <a class="dropdown-item" href="#">All Users</a>
-                      <a class="dropdown-item" href="#">Create User</a>
+                      <a class="dropdown-item" href="{{route('admin.users')}}">All Users</a>
+                      <a class="dropdown-item" href="{{route('admin.create-user')}}">Create User</a>
                     </div>
                 </li>
                 
