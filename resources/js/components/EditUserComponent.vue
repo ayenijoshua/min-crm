@@ -104,7 +104,7 @@ export default {
 
     methods: {
         submit(){
-            axios.patch(this.postAction, this.form)
+            axios.post(this.postAction, this.form)
             .then(res => {
                 if (res.data.success) {
                     toastr.success(res.data.message);

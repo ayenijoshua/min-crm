@@ -2563,7 +2563,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      axios.patch(this.postAction, this.form).then(function (res) {
+      axios.post(this.postAction, this.form).then(function (res) {
         if (res.data.success) {
           toastr.success(res.data.message);
         } else {
