@@ -17,7 +17,7 @@ class CompanyController extends Controller
 
     function all($paginate=null)
     {
-        $companies = $paginate ? $this->company->with('employees')->paginate() : $this->company->all();
+        $companies = $paginate ? $this->company->with('employees')->paginate(5) : $this->company->all();
         return response(['companies'=>$companies,'success'=>true],200);
     }
 
@@ -36,8 +36,9 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $employees = $request->user('company')->employees->count();
-        return view('company.dashboard',['employees'=>$employees]);
+        $company = $request->user('company')->load('employees');
+        //dd($company);
+        return view('company.dashboard',['company'=>$company]);
     }
 
     /**

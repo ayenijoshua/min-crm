@@ -15,7 +15,7 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        Company::factory()->testCompany()
+        Company::factory(['email'=>'check@comp.com'])
         ->has(Employee::factory()->count(5)->employee(), 'employees')
         ->create();
     }

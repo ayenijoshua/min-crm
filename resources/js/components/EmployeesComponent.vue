@@ -6,7 +6,6 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tr v-if="employees.data && employees.data.length==0">
@@ -18,9 +17,6 @@
                         <tr v-for="user in employees.data" :key="user.id">
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
-                            <td>
-                                
-                            </td>
                         </tr>
                     </tbody>
             </table>
