@@ -10,7 +10,7 @@
 
         <label for="basic-url" class="form-label">Company</label>
         <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example">
+            <select v-model="form.company_id" class="form-select" aria-label="Default select example">
                 <option selected>Select company</option>
                 <option v-for="(company, index) in companies" :key="index" :value="company.id">{{company.name}}</option>
             </select>
@@ -44,7 +44,8 @@ export default {
             form:{
                 email:'',
                 name:'',
-                password:'password'
+                password:'password',
+                company_id:''
             },
 
             companies:[],

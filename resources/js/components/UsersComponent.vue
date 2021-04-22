@@ -19,7 +19,7 @@
                     <tr v-for="user in users.data" :key="user.id">
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
-                        <td>{{user.company.name}}</td>
+                        <td>{{user.company ? user.company.name : 'none'}}</td>
                         <td>
                             <div class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
