@@ -2,7 +2,7 @@
 
 ## About Mini CRM
 
-Mini CRM is a simple orginization management application. 
+Mini CRM is a simple fullstack(Laravel/vue) orginization management application. 
 This application complies with standard SE principles like DRY. SOLID and the repository pattern.
 I also used Laravel's contextual binding to resolve the unanimous repository interface in my controllers.
 
