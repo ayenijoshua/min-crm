@@ -19,7 +19,7 @@
         <label for="basic-url" class="form-label">Company</label>
         <div class="input-group mb-3">
             <select v-model="form.company_id" class="form-select" aria-label="Default select example">
-                <option selected>{{user.company.name}}</option>
+                <option selected>{{user.company ? user.company.name : 'none'}}</option>
                 <option v-for="(company, index) in companies" :key="index" :value="company.id">{{company.name}}</option>
             </select>
         </div>

@@ -41129,7 +41129,7 @@ var render = function() {
           },
           [
             _c("option", { attrs: { selected: "" } }, [
-              _vm._v(_vm._s(_vm.user.company.name))
+              _vm._v(_vm._s(_vm.user.company ? _vm.user.company.name : "none"))
             ]),
             _vm._v(" "),
             _vm._l(_vm.companies, function(company, index) {
