@@ -15,7 +15,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-         Employee::factory(['email'=>'test@employee1'])->employee()
+         Employee::factory()->employee()->testEmployee()
             ->for(Company::factory())
             ->create();
     }
