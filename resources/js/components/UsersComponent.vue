@@ -24,8 +24,8 @@
                             <div class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" :href="'edit-user/'+user.id">Edit</a>
-                                    <a class="dropdown-item" @click="destroy(user.id)">Delete</a>
+                                    <a v-if="!user.is_admin" class="dropdown-item" :href="'edit-user/'+user.id">Edit</a>
+                                    <a v-if="!user.is_admin" class="dropdown-item" @click="destroy(user.id)">Delete</a>
                                 </div>
                             </div>
                         </td>

@@ -41310,27 +41310,31 @@ var render = function() {
                       attrs: { "aria-labelledby": "dropdown01" }
                     },
                     [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          attrs: { href: "edit-user/" + user.id }
-                        },
-                        [_vm._v("Edit")]
-                      ),
+                      !user.is_admin
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "edit-user/" + user.id }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          on: {
-                            click: function($event) {
-                              return _vm.destroy(user.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
+                      !user.is_admin
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              on: {
+                                click: function($event) {
+                                  return _vm.destroy(user.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        : _vm._e()
                     ]
                   )
                 ])
